@@ -78,7 +78,7 @@ function Home() {
 const slide = slides[activeSlide];
   return (
     <div>
-     <section className="nokler-hero">
+    <section key={activeSlide} className="nokler-hero">
   <div className="nokler-hero-content">
     {brand.logo && (
       <img src={brand.logo} alt="Logo Nokler" className="nokler-hero-logo" />

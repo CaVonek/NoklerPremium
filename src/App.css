@@ -1232,3 +1232,18 @@ h3 {
     transform: translateX(0);
   }
 }
+.nokler-hero {
+  animation: heroEnter 0.65s ease both;
+}
+
+@keyframes heroEnter {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
