@@ -781,149 +781,7 @@ h3 {
   text-align: center;
   color: #888;
 }
-
-/* RESPONSYWNOŚĆ */
-
-@media (max-width: 1150px) {
-  .content {
-    padding: 25px 30px;
-  }
-
-  .home-slider,
-  .product-page {
-    grid-template-columns: 1fr;
-  }
-
-  .slider-side-box {
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  .home-category-grid,
-  .why-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .app {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    min-width: 100%;
-  }
-
-  .content {
-    padding: 25px 18px;
-  }
-
-  .home-slider {
-    padding: 30px;
-  }
-
-  .slider-content h1 {
-    font-size: 38px;
-  }
-
-  .home-category-grid,
-  .why-grid,
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-page,
-  .cart-item,
-  .admin-product {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-  }
-}
-.slider-track {
-  display: flex;
-  transition: transform 0.7s ease-in-out;
-  width: 100%;
-}
-
-.slider-slide {
-  min-width: 100%;
-  width: 100%;
-  padding: 50px;
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
-  gap: 35px;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.slider-content,
-.slider-side-box {
-  min-width: 0;
-  animation: softFade 0.7s ease;
-}
-
-@keyframes softFade {
-  from {
-    opacity: 0.65;
-    transform: translateX(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-.new-order-toast {
-  position: fixed;
-  top: 25px;
-  right: 25px;
-  width: 320px;
-  background: #1b1b1b;
-  border: 1px solid orange;
-  border-radius: 16px;
-  padding: 18px;
-  z-index: 9999;
-  box-shadow: 0 0 30px rgba(255, 165, 0, 0.35);
-  animation: slideToast 0.35s ease;
-}
-
-.new-order-toast h3 {
-  color: orange;
-  margin-bottom: 8px;
-}
-
-.new-order-toast p {
-  margin-bottom: 5px;
-  color: #ddd;
-}
-
-.new-order-toast button {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  background: transparent;
-  color: orange;
-  font-size: 22px;
-  padding: 0;
-}
-
-@keyframes slideToast {
-  from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-/* RESPONSYWNOŚĆ TELEFON / TABLET */
+/* RESPONSYWNOŚĆ FINALNA */
 
 @media (max-width: 1100px) {
   .app {
@@ -933,7 +791,7 @@ h3 {
   .sidebar {
     width: 100%;
     min-width: 100%;
-    padding: 20px;
+    padding: 18px;
   }
 
   .sidebar-brand {
@@ -942,18 +800,19 @@ h3 {
   }
 
   .sidebar-logo {
-    width: 160px;
-    max-height: 100px;
+    width: 150px;
+    max-height: 90px;
   }
 
   .sidebar ul {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
   .sidebar li {
     margin-bottom: 0;
+    padding: 12px;
     text-align: center;
   }
 
@@ -961,14 +820,30 @@ h3 {
     padding: 20px;
   }
 
+  .content > div,
   .home-slider,
+  .home-section,
+  .why-nokler,
+  .product-section,
+  .product-grid,
+  .footer,
+  .cart-item,
+  .order-card,
+  .admin-product {
+    max-width: 100%;
+  }
+
   .slider-slide,
   .product-page {
     grid-template-columns: 1fr;
   }
 
   .slider-slide {
-    padding: 30px;
+    padding: 35px;
+  }
+
+  .slider-content {
+    max-width: 100%;
   }
 
   .slider-content h1 {
@@ -979,52 +854,90 @@ h3 {
     font-size: 22px;
   }
 
+  .slider-content p {
+    font-size: 16px;
+  }
+
   .slider-side-box {
     margin-top: 20px;
   }
 
   .home-category-grid,
-  .why-grid {
+  .why-grid,
+  .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @media (max-width: 650px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    padding: 14px;
+  }
+
   .sidebar ul {
     grid-template-columns: 1fr;
   }
 
+  .sidebar li {
+    font-size: 14px;
+  }
+
   .content {
-    padding: 15px;
+    padding: 14px;
   }
 
   .home-slider {
     min-height: auto;
+    border-radius: 18px;
   }
 
   .slider-slide {
     padding: 22px;
+    gap: 18px;
   }
 
   .hero-logo {
-    width: 180px;
-    max-height: 110px;
+    width: 170px;
+    max-height: 100px;
   }
 
   .slider-content h1 {
-    font-size: 30px;
+    font-size: 28px;
+    line-height: 1.15;
   }
 
   .slider-content h2 {
-    font-size: 19px;
+    font-size: 18px;
   }
 
   .slider-content p {
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  .slider-side-box {
+    padding: 20px;
+  }
+
+  .slider-side-box h3 {
+    font-size: 20px;
+  }
+
+  .slider-dots {
+    left: 22px;
+    bottom: 14px;
   }
 
   .home-category-grid,
@@ -1034,8 +947,39 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .product-card img {
-    height: 210px;
+  .home-category-card,
+  .why-nokler,
+  .product-card,
+  .product-gallery-box,
+  .product-info-box,
+  .product-section,
+  .contact-card,
+  .order-card,
+  .cart-item,
+  .admin-product {
+    padding: 18px;
+  }
+
+  .product-page {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .product-main-image {
+    height: 240px;
+  }
+
+  .product-thumbnails img {
+    width: 70px;
+    height: 58px;
+  }
+
+  .product-info-box h1 {
+    font-size: 26px;
+  }
+
+  .product-price {
+    font-size: 28px;
   }
 
   .cart-item,
@@ -1049,20 +993,21 @@ h3 {
     height: 190px;
   }
 
-  .product-main-image {
-    height: 260px;
-  }
-
-  .product-info-box h1 {
-    font-size: 28px;
-  }
-
-  .product-price {
-    font-size: 30px;
-  }
-
   .footer {
-    padding-left: 5px;
-    padding-right: 5px;
+    margin-top: 40px;
+  }
+
+  .footer-grid {
+    gap: 22px;
+  }
+
+  .footer-bottom {
+    font-size: 13px;
+  }
+
+  .new-order-toast {
+    width: calc(100% - 28px);
+    right: 14px;
+    top: 14px;
   }
 }
