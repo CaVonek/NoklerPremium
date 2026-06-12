@@ -1259,12 +1259,14 @@ h3 {
 }
 
 .hero-slide {
-  min-width: 100%;
+  flex: 0 0 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
   gap: 35px;
   align-items: center;
   padding: 50px;
+  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   .hero-slide {
