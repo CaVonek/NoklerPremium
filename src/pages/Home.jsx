@@ -75,50 +75,41 @@ function Home() {
   const fallbackProducts = products.slice(0, 3);
 
   const categories = ["Uchwyty", "Zawiasy", "Prowadnice", "Szuflady", "Nóżki", "Akcesoria"];
-
+const slide = slides[activeSlide];
   return (
     <div>
       <section className="home-slider">
-        <div
-          className="slider-track"
-          style={{
-            transform: `translateX(-${activeSlide * 100}%)`
-          }}
-        >
-          {slides.map((slide, index) => (
-            <div className="slider-slide" key={index}>
-              <div className="slider-content">
-                {brand.logo && (
-                  <img src={brand.logo} alt="Logo Nokler" className="hero-logo" />
-                )}
+  <div className="slider-slide">
+    <div className="slider-content">
+      {brand.logo && (
+        <img src={brand.logo} alt="Logo Nokler" className="hero-logo" />
+      )}
 
-                <h1>{slide.title}</h1>
-                <h2>{slide.subtitle}</h2>
-                <p>{slide.text}</p>
+      <h1>{slide.title}</h1>
+      <h2>{slide.subtitle}</h2>
+      <p>{slide.text}</p>
 
-                <Link to="/shop">
-                  <button>{slide.button}</button>
-                </Link>
-              </div>
+      <Link to="/shop">
+        <button>{slide.button}</button>
+      </Link>
+    </div>
 
-              <div className="slider-side-box">
-                <h3>{home.bannerText}</h3>
-                <p>Jakość • styl • funkcjonalność</p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="slider-side-box">
+      <h3>{home.bannerText}</h3>
+      <p>Jakość • styl • funkcjonalność</p>
+    </div>
+  </div>
 
-        <div className="slider-dots">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveSlide(index)}
-              className={activeSlide === index ? "active-dot" : ""}
-            />
-          ))}
-        </div>
-      </section>
+  <div className="slider-dots">
+    {slides.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setActiveSlide(index)}
+        className={activeSlide === index ? "active-dot" : ""}
+      />
+    ))}
+  </div>
+</section>
 
       <section className="home-section">
         <h2>Kategorie produktów</h2>
