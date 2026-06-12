@@ -44,6 +44,7 @@ function AppClient() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="*" element={<Home />} />
           </Routes>
 
           <Footer />
