@@ -18,7 +18,9 @@ body {
   overflow-x: hidden;
 }
 
-/* GŁÓWNY UKŁAD */
+img {
+  max-width: 100%;
+}
 
 .app {
   display: flex;
@@ -41,12 +43,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Jeden wspólny kontener dla wszystkich zakładek */
 .content > div {
   width: 100%;
   max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 /* SIDEBAR */
@@ -70,7 +70,6 @@ body {
   color: orange;
   font-size: 26px;
   font-weight: 900;
-  letter-spacing: 1px;
   text-align: center;
 }
 
@@ -84,6 +83,7 @@ body {
   background: #222;
   border-radius: 8px;
   cursor: pointer;
+  text-align: center;
 }
 
 .sidebar li:hover {
@@ -114,11 +114,18 @@ button {
 
 h1,
 h2,
+h3,
+p {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
 h3 {
   line-height: 1.2;
 }
 
-/* STRONA GŁÓWNA - SLIDER */
+/* SLIDER */
 
 .home-slider {
   width: 100%;
@@ -131,6 +138,22 @@ h3 {
   border-radius: 24px;
   box-shadow: 0 0 35px rgba(255, 165, 0, 0.14);
   overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.7s ease-in-out;
+}
+
+.slider-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+  gap: 35px;
+  align-items: center;
 }
 
 .slider-content {
@@ -152,12 +175,10 @@ h3 {
   font-size: 48px;
   line-height: 1.08;
   margin-bottom: 18px;
-  letter-spacing: 1px;
 }
 
 .slider-content h2 {
   font-size: 26px;
-  line-height: 1.25;
   margin: 10px 0 18px 0;
 }
 
@@ -211,7 +232,7 @@ h3 {
   background: orange;
 }
 
-/* SEKCJE STRONY GŁÓWNEJ */
+/* SEKCJE */
 
 .home-section,
 .why-nokler,
@@ -229,7 +250,8 @@ h3 {
   text-align: center;
 }
 
-.home-category-grid {
+.home-category-grid,
+.why-grid {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -244,12 +266,6 @@ h3 {
   color: white;
   text-decoration: none;
   text-align: center;
-  transition: 0.2s;
-}
-
-.home-category-card:hover {
-  transform: translateY(-4px);
-  background: #2b2b2b;
 }
 
 .home-category-card h3 {
@@ -261,12 +277,6 @@ h3 {
   border: 1px solid orange;
   border-radius: 22px;
   padding: 35px;
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
 }
 
 .why-grid div {
@@ -355,7 +365,7 @@ h3 {
   margin-top: 8px;
 }
 
-/* KARTA PRODUKTU */
+/* PRODUKT */
 
 .back-link {
   display: inline-block;
@@ -542,7 +552,6 @@ h3 {
   border: 1px solid orange;
   border-radius: 16px;
   padding: 25px;
-  box-shadow: 0 0 20px rgba(255, 165, 0, 0.12);
 }
 
 .dashboard-card span {
@@ -762,7 +771,6 @@ h3 {
   color: #cfcfcf;
   text-decoration: none;
   margin-bottom: 10px;
-  transition: 0.2s;
 }
 
 .footer-grid a:hover {
@@ -781,7 +789,43 @@ h3 {
   text-align: center;
   color: #888;
 }
-/* RESPONSYWNOŚĆ FINALNA */
+
+/* TOAST */
+
+.new-order-toast {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width: 320px;
+  background: #1b1b1b;
+  border: 1px solid orange;
+  border-radius: 16px;
+  padding: 18px;
+  z-index: 9999;
+  box-shadow: 0 0 30px rgba(255, 165, 0, 0.35);
+}
+
+.new-order-toast h3 {
+  color: orange;
+  margin-bottom: 8px;
+}
+
+.new-order-toast p {
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+.new-order-toast button {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  color: orange;
+  font-size: 22px;
+  padding: 0;
+}
+
+/* TABLET */
 
 @media (max-width: 1100px) {
   .app {
@@ -813,7 +857,7 @@ h3 {
   .sidebar li {
     margin-bottom: 0;
     padding: 12px;
-    text-align: center;
+    font-size: 14px;
   }
 
   .content {
@@ -843,6 +887,12 @@ h3 {
   }
 
   .slider-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .slider-side-box {
+    width: 100%;
     max-width: 100%;
   }
 
@@ -858,31 +908,17 @@ h3 {
     font-size: 16px;
   }
 
-  .slider-side-box {
-    margin-top: 20px;
-  }
-
   .home-category-grid,
   .why-grid,
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  .footer-grid,
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
-@media (max-width: 650px) {
-  body {
-    overflow-x: hidden;
-  }
+/* TELEFON */
 
+@media (max-width: 650px) {
   .sidebar {
     padding: 14px;
   }
@@ -893,10 +929,11 @@ h3 {
 
   .sidebar li {
     font-size: 14px;
+    padding: 12px;
   }
 
   .content {
-    padding: 14px;
+    padding: 12px;
   }
 
   .home-slider {
@@ -906,16 +943,18 @@ h3 {
 
   .slider-slide {
     padding: 22px;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .hero-logo {
     width: 170px;
-    max-height: 100px;
+    max-height: 95px;
   }
 
   .slider-content h1 {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 1.15;
   }
 
@@ -924,11 +963,12 @@ h3 {
   }
 
   .slider-content p {
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .slider-side-box {
-    padding: 20px;
+    padding: 18px;
   }
 
   .slider-side-box h3 {
@@ -936,8 +976,9 @@ h3 {
   }
 
   .slider-dots {
-    left: 22px;
-    bottom: 14px;
+    position: static;
+    margin-top: 20px;
+    justify-content: center;
   }
 
   .home-category-grid,
@@ -993,8 +1034,15 @@ h3 {
     height: 190px;
   }
 
+  .spec-table td {
+    display: block;
+    width: 100%;
+  }
+
   .footer {
     margin-top: 40px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .footer-grid {
@@ -1006,33 +1054,8 @@ h3 {
   }
 
   .new-order-toast {
-    width: calc(100% - 28px);
-    right: 14px;
-    top: 14px;
-  }
-}
-@media (max-width: 768px) {
-
-  .slider-slide {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 20px !important;
-  }
-
-  .slider-content {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .slider-side-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-top: 0 !important;
-  }
-
-  .slider-content h1 {
-    font-size: 42px !important;
-    line-height: 1.1;
+    width: calc(100% - 24px);
+    right: 12px;
+    top: 12px;
   }
 }
