@@ -1217,3 +1217,18 @@ h3 {
     margin-top: 5px;
   }
 }
+.nokler-hero {
+  animation: heroSlideFade 0.55s ease;
+}
+
+@keyframes heroSlideFade {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
