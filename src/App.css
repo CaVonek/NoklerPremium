@@ -935,13 +935,19 @@ h3 {
     border-radius: 18px;
   }
 
-  .slider-slide {
+ .slider-slide {
   width: 100%;
-  padding: 50px;
-  display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
-  gap: 35px;
-  align-items: center;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.slider-content,
+.slider-side-box {
+  width: 100%;
+  max-width: 100%;
 }
 
   .hero-logo {
