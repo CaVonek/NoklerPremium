@@ -1271,3 +1271,51 @@ h3 {
     gap: 20px;
   }
 }
+.status-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  background: orange;
+  color: black;
+}
+
+.status-nowe {
+  background: #f59e0b;
+  color: black;
+}
+
+.status-oczekuje-na-płatność {
+  background: #facc15;
+  color: black;
+}
+
+.status-opłacone {
+  background: #22c55e;
+  color: black;
+}
+
+.status-w-realizacji {
+  background: #38bdf8;
+  color: black;
+}
+
+.status-gotowe-do-wysyłki {
+  background: #a78bfa;
+  color: black;
+}
+
+.status-wysłane {
+  background: #60a5fa;
+  color: black;
+}
+
+.status-zakończone {
+  background: #4ade80;
+  color: black;
+}
+
+.status-anulowane {
+  background: #ef4444;
+  color: white;
+}

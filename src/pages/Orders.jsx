@@ -12,7 +12,16 @@ function Orders() {
   const { brand } = useBrand();
   const { contact } = useContact();
 
-  const statuses = ["Nowe", "W realizacji", "Wysłane", "Zakończone", "Anulowane"];
+  const statuses = [
+  "Nowe",
+  "Oczekuje na płatność",
+  "Opłacone",
+  "W realizacji",
+  "Gotowe do wysyłki",
+  "Wysłane",
+  "Zakończone",
+  "Anulowane"
+];
 
   function generatePDF(order) {
     const productsTable = [
@@ -203,7 +212,9 @@ function Orders() {
 
             <p>
               <b>Status:</b>{" "}
-              <span className="status-badge">{order.status}</span>
+             <span className={`status-badge status-${order.status?.toLowerCase().replaceAll(" ", "-")}`}>
+  {order.status}
+</span>
             </p>
 
             <select
