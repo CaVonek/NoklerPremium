@@ -1247,3 +1247,30 @@ h3 {
     transform: translateX(0);
   }
 }
+.nokler-hero {
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-track {
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+  width: 100%;
+}
+
+.hero-slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+  gap: 35px;
+  align-items: center;
+  padding: 50px;
+}
+@media (max-width: 900px) {
+  .hero-slide {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+  }
+}

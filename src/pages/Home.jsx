@@ -75,27 +75,41 @@ function Home() {
   const fallbackProducts = products.slice(0, 3);
 
   const categories = ["Uchwyty", "Zawiasy", "Prowadnice", "Szuflady", "Nóżki", "Akcesoria"];
-const slide = slides[activeSlide];
   return (
     <div>
-    <section key={activeSlide} className="nokler-hero">
-  <div className="nokler-hero-content">
-    {brand.logo && (
-      <img src={brand.logo} alt="Logo Nokler" className="nokler-hero-logo" />
-    )}
+    <section className="nokler-hero">
+  <div
+    className="hero-track"
+    style={{
+      transform: `translateX(-${activeSlide * 100}%)`
+    }}
+  >
+    {slides.map((slide, index) => (
+      <div key={index} className="hero-slide">
+        <div className="nokler-hero-content">
+          {brand.logo && (
+            <img
+              src={brand.logo}
+              alt="Logo Nokler"
+              className="nokler-hero-logo"
+            />
+          )}
 
-    <h1>{slide.title}</h1>
-    <h2>{slide.subtitle}</h2>
-    <p>{slide.text}</p>
+          <h1>{slide.title}</h1>
+          <h2>{slide.subtitle}</h2>
+          <p>{slide.text}</p>
 
-    <Link to="/shop">
-      <button>{slide.button}</button>
-    </Link>
-  </div>
+          <Link to="/shop">
+            <button>{slide.button}</button>
+          </Link>
+        </div>
 
-  <div className="nokler-hero-box">
-    <h3>{home.bannerText}</h3>
-    <p>Jakość • styl • funkcjonalność</p>
+        <div className="nokler-hero-box">
+          <h3>{home.bannerText}</h3>
+          <p>Jakość • styl • funkcjonalność</p>
+        </div>
+      </div>
+    ))}
   </div>
 
   <div className="nokler-hero-dots">
