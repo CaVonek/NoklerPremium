@@ -1089,3 +1089,131 @@ h3 {
     line-height: 1.15 !important;
   }
 }
+.nokler-hero {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto 50px auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+  gap: 35px;
+  align-items: center;
+  background: radial-gradient(circle at top left, #3a2208, #111 60%);
+  border: 1px solid orange;
+  border-radius: 24px;
+  padding: 50px;
+  box-shadow: 0 0 35px rgba(255, 165, 0, 0.14);
+  overflow: hidden;
+}
+
+.nokler-hero-content {
+  text-align: center;
+  min-width: 0;
+}
+
+.nokler-hero-logo {
+  width: 260px;
+  max-height: 150px;
+  object-fit: contain;
+  margin: 0 auto 25px auto;
+  display: block;
+}
+
+.nokler-hero-content h1 {
+  color: orange;
+  font-size: 48px;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+.nokler-hero-content h2 {
+  font-size: 26px;
+  margin-bottom: 18px;
+}
+
+.nokler-hero-content p {
+  color: #ddd;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.nokler-hero-content button {
+  margin-top: 25px;
+}
+
+.nokler-hero-box {
+  background: #1b1b1b;
+  border: 1px solid orange;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.nokler-hero-box h3 {
+  color: orange;
+  font-size: 25px;
+}
+
+.nokler-hero-dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50px;
+  display: flex;
+  gap: 10px;
+}
+
+.nokler-hero-dots button {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid orange;
+  background: transparent;
+}
+
+.nokler-hero-dots .active-dot {
+  background: orange;
+}
+
+@media (max-width: 900px) {
+  .nokler-hero {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 22px;
+    border-radius: 18px;
+  }
+
+  .nokler-hero-content,
+  .nokler-hero-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .nokler-hero-logo {
+    width: 170px;
+    max-height: 95px;
+  }
+
+  .nokler-hero-content h1 {
+    font-size: 30px;
+  }
+
+  .nokler-hero-content h2 {
+    font-size: 18px;
+  }
+
+  .nokler-hero-content p {
+    font-size: 15px;
+  }
+
+  .nokler-hero-box {
+    padding: 18px;
+  }
+
+  .nokler-hero-dots {
+    position: static;
+    justify-content: center;
+    margin-top: 5px;
+  }
+}

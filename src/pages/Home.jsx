@@ -78,29 +78,27 @@ function Home() {
 const slide = slides[activeSlide];
   return (
     <div>
-      <section className="home-slider">
-  <div className="slider-slide">
-    <div className="slider-content">
-      {brand.logo && (
-        <img src={brand.logo} alt="Logo Nokler" className="hero-logo" />
-      )}
+     <section className="nokler-hero">
+  <div className="nokler-hero-content">
+    {brand.logo && (
+      <img src={brand.logo} alt="Logo Nokler" className="nokler-hero-logo" />
+    )}
 
-      <h1>{slide.title}</h1>
-      <h2>{slide.subtitle}</h2>
-      <p>{slide.text}</p>
+    <h1>{slide.title}</h1>
+    <h2>{slide.subtitle}</h2>
+    <p>{slide.text}</p>
 
-      <Link to="/shop">
-        <button>{slide.button}</button>
-      </Link>
-    </div>
-
-    <div className="slider-side-box">
-      <h3>{home.bannerText}</h3>
-      <p>Jakość • styl • funkcjonalność</p>
-    </div>
+    <Link to="/shop">
+      <button>{slide.button}</button>
+    </Link>
   </div>
 
-  <div className="slider-dots">
+  <div className="nokler-hero-box">
+    <h3>{home.bannerText}</h3>
+    <p>Jakość • styl • funkcjonalność</p>
+  </div>
+
+  <div className="nokler-hero-dots">
     {slides.map((_, index) => (
       <button
         key={index}
