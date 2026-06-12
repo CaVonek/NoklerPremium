@@ -140,12 +140,6 @@ h3 {
   overflow: hidden;
 }
 
-.slider-track {
-  display: flex;
-  width: 100%;
-  transition: transform 0.7s ease-in-out;
-}
-
 .slider-slide {
   flex: 0 0 100%;
   width: 100%;
@@ -942,11 +936,13 @@ h3 {
   }
 
   .slider-slide {
-    padding: 22px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+  width: 100%;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+  gap: 35px;
+  align-items: center;
+}
 
   .hero-logo {
     width: 170px;
