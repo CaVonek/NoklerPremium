@@ -18,6 +18,7 @@ function Shop() {
     "Szuflady",
     "Nóżki",
     "Akcesoria"
+    "Panele"
   ];
 
   const filteredProducts = products.filter((product) => {

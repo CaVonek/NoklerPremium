@@ -14,7 +14,7 @@ function Admin() {
   const { brand, updateBrand } = useBrand();
   const { contact, updateContact } = useContact();
 
-  const categories = ["Uchwyty", "Zawiasy", "Prowadnice", "Szuflady", "Nóżki", "Akcesoria"];
+  const categories = ["Uchwyty", "Zawiasy", "Prowadnice", "Szuflady", "Nóżki", "Akcesoria", "Panele"];
 
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState("");

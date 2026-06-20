@@ -74,7 +74,7 @@ function Home() {
   const newest = products.filter((product) => product.isNew).slice(0, 4);
   const fallbackProducts = products.slice(0, 3);
 
-  const categories = ["Uchwyty", "Zawiasy", "Prowadnice", "Szuflady", "Nóżki", "Akcesoria"];
+  const categories = ["Uchwyty", "Zawiasy", "Prowadnice", "Szuflady", "Nóżki", "Akcesoria", "Panele"];
   return (
     <div>
     <section className="nokler-hero">
