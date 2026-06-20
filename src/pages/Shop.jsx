@@ -17,7 +17,7 @@ function Shop() {
     "Prowadnice",
     "Szuflady",
     "Nóżki",
-    "Akcesoria"
+    "Akcesoria",
     "Panele"
   ];
 
