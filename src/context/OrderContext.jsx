@@ -8,16 +8,16 @@ export function OrderProvider({ children }) {
   const [newOrderAlert, setNewOrderAlert] = useState(null);
 
   function showNewOrderAlert(order) {
-  setNewOrderAlert(order);
+    setNewOrderAlert(order);
 
-  if (window.noklerElectron) {
-    window.noklerElectron.showOrderNotification(order);
+    if (window.noklerElectron) {
+      window.noklerElectron.showOrderNotification(order);
+    }
+
+    setTimeout(() => {
+      setNewOrderAlert(null);
+    }, 6000);
   }
-
-  setTimeout(() => {
-    setNewOrderAlert(null);
-  }, 6000);
-}
 
   async function loadOrders() {
     const { data, error } = await supabase
@@ -43,13 +43,13 @@ export function OrderProvider({ children }) {
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "orders" },
         (payload) => {
-  console.log("NOWE ZAMÓWIENIE REALTIME:", payload);
+          console.log("NOWE ZAMÓWIENIE REALTIME:", payload);
 
-  const order = payload.new;
+          const order = payload.new;
 
-  showNewOrderAlert(order);
-  loadOrders();
-}
+          showNewOrderAlert(order);
+          loadOrders();
+        }
       )
       .on(
         "postgres_changes",
@@ -66,8 +66,8 @@ export function OrderProvider({ children }) {
         }
       )
       .subscribe((status) => {
-  console.log("REALTIME STATUS:", status);
-});
+        console.log("REALTIME STATUS:", status);
+      });
 
     return () => {
       supabase.removeChannel(channel);
@@ -76,11 +76,11 @@ export function OrderProvider({ children }) {
 
   async function addOrder(order) {
     const newOrder = {
-  ...order,
-  id: order.id || Date.now(),
-  date: new Date().toLocaleString(),
-  status: order.status || "Nowe"
-};
+      ...order,
+      id: order.id || Date.now(),
+      date: new Date().toLocaleString(),
+      status: order.status || "Nowe"
+    };
 
     const { error } = await supabase.from("orders").insert([newOrder]);
 
@@ -95,37 +95,44 @@ export function OrderProvider({ children }) {
   }
 
   async function updateOrderStatus(id, status) {
-  const { error } = await supabase
-    .from("orders")
-    .update({ status })
-    .eq("id", id);
+    const { error } = await supabase
+      .from("orders")
+      .update({ status })
+      .eq("id", id);
 
-  if (error) {
-    console.error("Błąd zmiany statusu:", error);
-    alert("Nie udało się zmienić statusu.");
-    return;
-  }
+    if (error) {
+      console.error("Błąd zmiany statusu:", error);
+      alert("Nie udało się zmienić statusu.");
+      return;
+    }
 
-  const { data: order } = await supabase
-    .from("orders")
-    .select("*")
-    .eq("id", id)
-    .single();
+    const { data: order } = await supabase
+      .from("orders")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-  if (order) {
-    await supabase.functions.invoke(
-      "send-order-status-email",
-      {
-        body: {
-          ...order,
-          status
+    if (order) {
+      const { data, error: emailError } = await supabase.functions.invoke(
+        "send-order-status-email",
+        {
+          body: {
+            ...order,
+            status
+          }
         }
-      }
-    );
-  }
+      );
 
-  await loadOrders();
-}
+      console.log("EMAIL DATA:", data);
+      console.log("EMAIL ERROR:", emailError);
+
+      if (emailError) {
+        alert("Status zmieniony, ale nie udało się wysłać maila.");
+      }
+    }
+
+    await loadOrders();
+  }
 
   async function deleteOrder(id) {
     const { error } = await supabase.from("orders").delete().eq("id", id);

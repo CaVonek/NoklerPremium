@@ -43,11 +43,12 @@
     "directories": {
       "output": "release"
     },
-    "files": [
-      "dist/**/*",
-      "electron.cjs",
-      "package.json"
-    ],
+   "files": [
+  "dist/**/*",
+  "electron.cjs",
+  "preload.cjs",
+  "package.json"
+],
     "win": {
       "target": "nsis"
     },
