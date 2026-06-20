@@ -72,11 +72,11 @@ export function OrderProvider({ children }) {
 
   async function addOrder(order) {
     const newOrder = {
-      ...order,
-      id: order.id || Date.now(),
-      date: new Date().toLocaleString(),
-      status: "Nowe"
-    };
+  ...order,
+  id: order.id || Date.now(),
+  date: new Date().toLocaleString(),
+  status: order.status || "Nowe"
+};
 
     const { error } = await supabase.from("orders").insert([newOrder]);
 
