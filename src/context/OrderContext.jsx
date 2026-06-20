@@ -95,19 +95,37 @@ export function OrderProvider({ children }) {
   }
 
   async function updateOrderStatus(id, status) {
-    const { error } = await supabase
-      .from("orders")
-      .update({ status })
-      .eq("id", id);
+  const { error } = await supabase
+    .from("orders")
+    .update({ status })
+    .eq("id", id);
 
-    if (error) {
-      console.error("Błąd zmiany statusu:", error);
-      alert("Nie udało się zmienić statusu.");
-      return;
-    }
-
-    await loadOrders();
+  if (error) {
+    console.error("Błąd zmiany statusu:", error);
+    alert("Nie udało się zmienić statusu.");
+    return;
   }
+
+  const { data: order } = await supabase
+    .from("orders")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (order) {
+    await supabase.functions.invoke(
+      "send-order-status-email",
+      {
+        body: {
+          ...order,
+          status
+        }
+      }
+    );
+  }
+
+  await loadOrders();
+}
 
   async function deleteOrder(id) {
     const { error } = await supabase.from("orders").delete().eq("id", id);
