@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useOrders } from "../context/OrderContext";
 import { useProducts } from "../context/ProductContext";
+import { getClientId } from "../lib/clientId";
 
 function Checkout() {
   const { cart, total, clearCart } = useCart();
@@ -48,14 +49,15 @@ function Checkout() {
     }
 
     const newOrder = {
-      id: number,
-      customer: form,
-      products: cart,
-      total: total,
-      paymentMethod,
-      paymentStatus: payment,
-      status
-    };
+  id: number,
+  clientId: getClientId(),
+  customer: form,
+  products: cart,
+  total: total,
+  paymentMethod,
+  paymentStatus: payment,
+  status
+};
 
     addOrder(newOrder);
 

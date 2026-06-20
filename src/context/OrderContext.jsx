@@ -43,11 +43,13 @@ export function OrderProvider({ children }) {
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "orders" },
         (payload) => {
-          const order = payload.new;
+  console.log("NOWE ZAMÓWIENIE REALTIME:", payload);
 
-          showNewOrderAlert(order);
-          loadOrders();
-        }
+  const order = payload.new;
+
+  showNewOrderAlert(order);
+  loadOrders();
+}
       )
       .on(
         "postgres_changes",
@@ -63,7 +65,9 @@ export function OrderProvider({ children }) {
           loadOrders();
         }
       )
-      .subscribe();
+      .subscribe((status) => {
+  console.log("REALTIME STATUS:", status);
+});
 
     return () => {
       supabase.removeChannel(channel);

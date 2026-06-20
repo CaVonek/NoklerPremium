@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 
 import { useCart } from "./context/CartContext";
 import { useBrand } from "./context/BrandContext";
+import MyOrders from "./pages/MyOrders";
 
 function AppClient() {
   const { cartCount } = useCart();
@@ -32,6 +33,7 @@ function AppClient() {
             <li><Link to="/">🏠 Strona Główna</Link></li>
             <li><Link to="/shop">🛒 Sklep</Link></li>
             <li><Link to="/cart">🛍️ Koszyk ({cartCount})</Link></li>
+            <li><Link to="/my-orders">📦 Moje zamówienia</Link></li>
             <li><Link to="/contact">📞 Kontakt</Link></li>
           </ul>
         </aside>
@@ -45,6 +47,7 @@ function AppClient() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="*" element={<Home />} />
+            <Route path="/my-orders" element={<MyOrders />} />
           </Routes>
 
           <Footer />
