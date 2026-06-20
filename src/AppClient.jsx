@@ -40,15 +40,15 @@ function AppClient() {
 
         <main className="content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="*" element={<Home />} />
-            <Route path="/my-orders" element={<MyOrders />} />
-          </Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/shop" element={<Shop />} />
+  <Route path="/cart" element={<Cart />} />
+  <Route path="/contact" element={<Contact />} />
+  <Route path="/checkout" element={<Checkout />} />
+  <Route path="/product/:id" element={<ProductDetails />} />
+  <Route path="/my-orders" element={<MyOrders />} />
+  <Route path="*" element={<Home />} />
+</Routes>
 
           <Footer />
         </main>
