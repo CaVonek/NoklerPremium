@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useProducts } from "../context/ProductContext";
@@ -15,12 +15,32 @@ function ProductDetails() {
   }
 
   const images = product.images?.length ? product.images : [product.image];
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+
+  const selectedImage = images[selectedIndex];
+
+  useEffect(() => {
+    setSelectedIndex(0);
+    setQuantity(1);
+  }, [product.id]);
+
   const similarProducts = products
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
-  const [selectedImage, setSelectedImage] = useState(images[0]);
-  const [quantity, setQuantity] = useState(1);
+  function previousImage() {
+    setSelectedIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  }
+
+  function nextImage() {
+    setSelectedIndex((prev) =>
+      prev === images.length - 1 ? 0 : prev + 1
+    );
+  }
 
   function increaseQuantity() {
     if (quantity < Number(product.stock || 0)) {
@@ -53,23 +73,51 @@ function ProductDetails() {
 
       <div className="product-page">
         <div className="product-gallery-box">
-          <img
-            src={selectedImage}
-            alt={product.name}
-            className="product-main-image"
-          />
+          <div className="product-main-image-wrapper">
+            <img
+              src={selectedImage}
+              alt={product.name}
+              className="product-main-image"
+            />
 
-          <div className="product-thumbnails">
-            {images.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt={`Zdjęcie ${index + 1}`}
-                onClick={() => setSelectedImage(img)}
-                className={selectedImage === img ? "active-thumb" : ""}
-              />
-            ))}
+            {images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  className="gallery-arrow gallery-arrow-left"
+                  onClick={previousImage}
+                >
+                  ‹
+                </button>
+
+                <button
+                  type="button"
+                  className="gallery-arrow gallery-arrow-right"
+                  onClick={nextImage}
+                >
+                  ›
+                </button>
+
+                <div className="gallery-counter">
+                  {selectedIndex + 1} / {images.length}
+                </div>
+              </>
+            )}
           </div>
+
+          {images.length > 1 && (
+            <div className="product-thumbnails">
+              {images.map((img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt={`Zdjęcie ${index + 1}`}
+                  onClick={() => setSelectedIndex(index)}
+                  className={selectedIndex === index ? "active-thumb" : ""}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="product-info-box">
